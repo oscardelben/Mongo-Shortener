@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UrlShortner</title>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+<%= yield %>
+
+<%= javascript_include_tag 'jquery/jquery.js', 'rails.js', 'application.js' %>
+</body>
+</html>

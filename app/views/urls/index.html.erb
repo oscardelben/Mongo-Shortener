@@ -1,0 +1,12 @@
+<div id="container">
+	<%= form_tag({ :action => :make_short }, :remote => true) do %>
+
+		<%= text_field_tag :url, 'http://' %>
+
+		<%= submit_tag 'Shorten' %>
+
+	<% end %>
+
+	<div id="result" style="display:none">
+	</div>
+</div>

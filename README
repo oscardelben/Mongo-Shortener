@@ -1,0 +1,16 @@
+Url shortener
+
+Technologies:
+
+Rails 3
+Cucumber
+Rspec
+MongoID
+
+This is a demo app that I've created to get comfortable with MongoDB.
+
+The app works as follow:
+
+Enter an url and get its shortened version. You can see stats for shortened urls by appending .stats to the shortened url. To view the complete url before being redirected to it, append .preview to it.
+
+Note: There's one failing step in Cucumber, given that I don't know how to test the redirect to an external domain. I'll fix this asap.
