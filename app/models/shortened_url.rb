@@ -24,7 +24,7 @@ class ShortenedUrl
   end
   
   def random_string(size)
-    string = (1..size).collect { (i = Kernel.rand(62); i += ((i < 10) ? 48 : ((i < 36) ? 55 : 61 ))).chr }.join
+    string = SecureRandom.hex(size / 2)
 
     if already_exists?(string)
       random_string(size)
