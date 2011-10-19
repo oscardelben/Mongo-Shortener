@@ -17,24 +17,25 @@ class ShortenedUrl
   private
   
   def create_shortened
-    if shortened.blank? || already_exists?(shortened)
-      shortened_version = random_string(6)
-      write_attribute :shortened, shortened_version
-    end
+      write_attribute :shortened, bijective_encode(ShortenedUrl.count() + 1000)
   end
-  
-  def random_string(size)
-    string = SecureRandom.hex(size / 2)
+    
+  ALPHABET =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
+    # make your own alphabet using:
+    # (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).shuffle.join
 
-    if already_exists?(string)
-      random_string(size)
-    else
-      string
+  def bijective_encode(i)
+    # from http://refactormycode.com/codes/125-base-62-encoding
+    # with only minor modification
+    return ALPHABET[0] if i == 0
+    s = ''
+    base = ALPHABET.length
+    while i > 0
+      s << ALPHABET[i.modulo(base)]
+      i /= base
     end
-  end
-  
-  def already_exists?(string)
-    self.class.exists?(:conditions => { :shortened => string })
+    s.reverse
   end
   
 end
